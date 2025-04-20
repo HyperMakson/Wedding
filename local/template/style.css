@@ -57,6 +57,7 @@
     --font-primary: "Caviar Dreams";
     --font-primary-second: "Liana";
     --width-padding: 32px;
+    --width-padding-small: 24px;
     --swiper-theme-color: #99AC79;
     --swiper-navigation-size: 26px;
 }
@@ -113,6 +114,7 @@
 .swiper .swiper-button-prev,
 .swiper .swiper-button-next {
     background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--color-primary);
     border-radius: 50%;
     width: 44px;
@@ -152,6 +154,44 @@
 
 .lazy-image.loaded {
     opacity: 1;
+}
+
+canvas {
+    z-index: 1100 !important;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.loader-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
 }
 
 /* End General */
@@ -534,6 +574,11 @@
     width: 100%;
 }
 
+#program .swiper {
+    overflow: visible;
+    z-index: 10;
+}
+
 .program-wrapper {
     display: flex;
     flex-direction: column;
@@ -590,11 +635,17 @@
 }
 
 .program-wrapper .program-picture.program-picture--gift {
-    background-image: url("images/icons/gift.png");
+    background-image: url("images/icons/gift.webp");
 }
 
 .program-wrapper .program-picture.program-picture--money {
-    background-image: url("images/icons/money.png");
+    background-image: url("images/icons/money.webp");
+}
+
+@media (max-width: 991.98px) {
+    .program-wrapper {
+        padding: var(--width-padding-small);
+    }
 }
 
 /* Feedback */
@@ -603,6 +654,7 @@
 }
 
 .feedback-container .feedback-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -619,7 +671,7 @@
     appearance: none;
 }
 
-.feedback-container img {
+.feedback-container .feedback-picture__container img {
     height: 100%;
     object-fit: contain;
 }

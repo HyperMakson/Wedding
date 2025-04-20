@@ -16,6 +16,10 @@
     </div>
 </footer>
 
+<div class="loader">
+    <img src="<?= IMAGE_PATH . "loading-heart.gif"; ?>" class="img-fluid" alt="Загрузка...">
+</div>
+
 </body>
 
 </html>

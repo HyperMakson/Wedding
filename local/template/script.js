@@ -89,8 +89,10 @@ $(document).ready(function () {
 
     // Слайдер программы
     const swiperProgram = new Swiper('#program .swiper', {
-        slidesPerView: 1,
+        slidesPerView: 1.075,
         spaceBetween: 10,
+        initialSlide: 1,
+        centeredSlides: true,
         loop: false,
         autoplay: false,
         pagination: {
@@ -105,10 +107,14 @@ $(document).ready(function () {
             768: {
                 slidesPerView: 2,
                 spaceBetween: 20,
+                initialSlide: 0,
+                centeredSlides: false,
             },
             992: {
                 slidesPerView: 3,
                 spaceBetween: 32,
+                initialSlide: 0,
+                centeredSlides: false,
             }
         }
     });
@@ -120,16 +126,11 @@ $(document).ready(function () {
     // Отсчёт до даты
     let datetime = Date.parse('2025-08-23T08:40:00Z') / 1000;
 
-    var flipdown = new FlipDown(datetime, {
+    const flipdown = new FlipDown(datetime, {
         theme: "green",
         headings: ["Дни", "Часы", "Минуты", "Секунды"],
     });
     flipdown.start();
-
-    // Изменение активного слайда в программе для мобилки
-    if ($(window).width() <= 992) {
-        swiperProgram.slideTo(1, 700);
-    }
 
     // Показ верхнего меню на мобилке
     $("#header .menu-mobile__open").on("click", function () {
@@ -162,15 +163,20 @@ $(document).ready(function () {
     // Маска для ввода телефона
     $("#form-phone").mask("+7 (999) 999-99-99");
 
+    // Конфетти
+    const jsConfetti = new JSConfetti();
+
     // Отправка формы
     $("#feedback-form").on("submit", async function (e) {
         e.preventDefault();
 
         try {
+            let form = $(this);
+            form.siblings(".loader-block").fadeIn();
+
             const token = await getRecaptchaToken(siteKey, 'submit');
             document.getElementById("g-recaptcha-response").value = token;
 
-            let form = $(this);
             let inputs = form.find("input, select, button, textarea");
             let serializedData = form.serializeArray();
 
@@ -234,8 +240,9 @@ $(document).ready(function () {
                     setModalResult(response.success, modalTitleContent, modalBodyContent, customStatus);
                     myModal.show();
 
-                    // let emailInput = form.find("#form-email");
-                    // emailInput.addClass("is-invalid");
+                    if (response.success && response.presense) {
+                        jsConfetti.addConfetti();
+                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     let modalTitleContent = "Произошла ошибка";
@@ -246,6 +253,7 @@ $(document).ready(function () {
                 },
                 complete: function () {
                     inputs.prop("disabled", false);
+                    form.siblings(".loader-block").fadeOut();
                 }
             });
         } catch (err) {
@@ -256,4 +264,9 @@ $(document).ready(function () {
             myModal.show();
         }
     });
+});
+
+// Убрать прелоадер
+$(window).on("load", function () {
+    $(".loader").fadeOut();
 });

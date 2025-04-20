@@ -1,4 +1,4 @@
-<? require $_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/init.php"; ?>
+<?php require $_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/init.php"; ?>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -22,22 +22,49 @@
     <title>Приглашение на свадьбу Максима и Вики</title>
 
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="/local/vendor/js/flipdown-master/flipdown.css">
     <link rel="stylesheet" href="/local/template/style.css">
 
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "Свадьба Максима и Вики",
+            "startDate": "2025-08-23T11:40:00+03:00",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "location": {
+                "@type": "Place",
+                "name": "Ресторан VOYAGE",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Тула",
+                    "addressRegion": "RU",
+                    "streetAddress": "ул. Станиславского, 49"
+                }
+            },
+            "image": "https://maxim-and-vika.ru/local/template/images/open-graph.jpg",
+            "description": "Приглашение на свадьбу Максима и Вики, которая состоится 23 августа 2025 года в ресторане 'VOYAGE', по адресу г. Тула, ул. Станиславского, 49. Будем рады видеть вас на нашем празднике!",
+            "organizer": {
+                "@type": "Person",
+                "name": "Максим и Вика"
+            }
+        }
+    </script>
     <script>
         const siteKey = '<?= SITE_KEY; ?>';
     </script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
     <script src="https://www.google.com/recaptcha/api.js?render=<?= SITE_KEY; ?>"></script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js" defer></script>
     <script src="/local/vendor/js/custom-select-bs/custom-select.js" defer></script>
     <script src="/local/vendor/js/maskedinput/jquery.maskedinput.min.js" defer></script>
     <script src="/local/vendor/js/flipdown-master/flipdown.js" defer></script>

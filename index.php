@@ -1,4 +1,4 @@
-<? require $_SERVER["DOCUMENT_ROOT"] . "/local/template/header.php"; ?>
+<?php require $_SERVER["DOCUMENT_ROOT"] . "/local/template/header.php"; ?>
 
 <div class="container main-content-container" id="main-content">
     <div class="wrapper">
@@ -6,23 +6,23 @@
         <div class="gallery-container">
             <div class="swiper">
                 <div class="swiper-wrapper">
-                    <? for ($i = 1; $i <= 8; $i++): ?>
+                    <?php for ($i = 1; $i <= 8; $i++): ?>
                         <div class="swiper-slide">
-                            <?
+                            <?php
                             $filePhotoPath = IMAGE_PATH . "slider/photo-slider-$i.webp";
-                            $defaultPhotoPath = IMAGE_PATH . "no-image.png";
+                            $defaultPhotoPath = IMAGE_PATH . "no-image.webp";
                             ?>
-                            <? if (file_exists($_SERVER["DOCUMENT_ROOT"] . $filePhotoPath)): ?>
+                            <?php if (file_exists($_SERVER["DOCUMENT_ROOT"] . $filePhotoPath)): ?>
                                 <a href="<?= $filePhotoPath; ?>" data-fancybox="gallery-main-content" data-caption="Наше фото">
                                     <img data-src="<?= $filePhotoPath; ?>" class="lazy-image" alt="Наше фото" title="Наше фото">
                                 </a>
-                            <? else: ?>
+                            <?php else: ?>
                                 <a href="<?= $defaultPhotoPath; ?>" data-fancybox="gallery-main-content" data-caption="Фото отсутствует">
                                     <img data-src="<?= $defaultPhotoPath; ?>" class="lazy-image" alt="Фото отсутствует" title="Фото отсутствует">
                                 </a>
-                            <? endif; ?>
+                            <?php endif; ?>
                         </div>
-                    <? endfor; ?>
+                    <?php endfor; ?>
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>
@@ -53,12 +53,12 @@
         <div class="calendar-wrapper">
             <h2 class="calendar-title"><span>Август</span> 2025</h2>
             <div class="calendar-main">
-                <? for ($i = 1; $i <= 4; $i++): ?>
+                <?php for ($i = 1; $i <= 4; $i++): ?>
                     <div class="calendar-day empty"></div>
-                <? endfor; ?>
-                <? for ($i = 1; $i <= 31; $i++): ?>
+                <?php endfor; ?>
+                <?php for ($i = 1; $i <= 31; $i++): ?>
                     <div class="calendar-day<?= ($i === WEDDING_DAY) ? " active" : ""; ?>"><?= $i; ?></div>
-                <? endfor; ?>
+                <?php endfor; ?>
             </div>
             <div class="countdown-container">
                 <div id="flipdown" class="flipdown"></div>
@@ -160,17 +160,20 @@
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Отправить</button>
                     </form>
+                    <div class="loader-block" style="display: none;">
+                        <img data-src="<?= IMAGE_PATH . "loading.gif"; ?>" class="img-fluid lazy-image" alt="Загрузка...">
+                    </div>
                 </div>
                 <div class="feedback-picture__container mt-4 mt-lg-0 col-12 col-lg-6">
-                    <img data-src="<?= IMAGE_PATH . "form-photo.png"; ?>" class="img-fluid lazy-image" alt="Анкета гостя">
+                    <img src="<?= IMAGE_PATH . "form-photo.webp"; ?>" class="img-fluid" alt="Анкета гостя">
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="form-modal" tabindex="-1">
-    <div class="modal-dialog">
+<div class="modal fade" id="form-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"></h5>
@@ -184,4 +187,4 @@
     </div>
 </div>
 
-<? require $_SERVER["DOCUMENT_ROOT"] . "/local/template/footer.php"; ?>
+<?php require $_SERVER["DOCUMENT_ROOT"] . "/local/template/footer.php"; ?>

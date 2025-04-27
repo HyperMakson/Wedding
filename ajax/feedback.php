@@ -10,16 +10,16 @@ $result = [
 
 try {
     if (isset($_POST["name"]) && isset($_POST["phone"])) {
-        $obCaptcha = new lib\Form\Captcha();
+        $obCaptcha = new \lib\Form\Captcha();
         $token = $_POST["g-recaptcha-response"] ?? "";
-        $checkCaptcha = $obCaptcha->checkCaptcha(SECRET_KEY, $token);
 
+        $checkCaptcha = $obCaptcha->checkCaptcha(SECRET_KEY, $token);
         if (!$checkCaptcha) {
             $result['error']['captcha'] = "Ошибка проверки reCAPTCHA";
         }
 
         if (isset($_POST["presense"])) {
-            if (!lib\Form\Feedback::checkBoolean($_POST["presense"])) {
+            if (!\lib\Form\Feedback::checkBoolean($_POST["presense"])) {
                 $result['presense'] = false;
             }
         }
@@ -29,12 +29,12 @@ try {
             $result['error']['name'] = "Не указано имя";
         }
 
-        if (!lib\Form\Feedback::checkPhone($_POST["phone"])) {
+        if (!\lib\Form\Feedback::checkPhone($_POST["phone"])) {
             $result['error']['phone'] = "Неправильно указан телефон";
         }
 
         if (isset($_POST["email"])) {
-            if (!lib\Form\Feedback::checkEmail($_POST["email"])) {
+            if (!\lib\Form\Feedback::checkEmail($_POST["email"])) {
                 $result['error']['email'] = "Неправильно указан email";
             }
         }
@@ -52,19 +52,31 @@ try {
         ];
 
         if (empty($result['error'])) {
-            $obFeedback = new lib\Form\Feedback();
+            $mailData = [
+                'presense' => $_POST['presense'] ?? "",
+                'name' => $_POST['name'] ?? "",
+                'phone' => $_POST['phone'] ?? "",
+                'email' => $_POST['email'] ?? "",
+                'alcohol' => $_POST['alcohol'] ?? "",
+            ];
+
+            $obFeedback = new \lib\Form\Feedback($mailData);
+            $sendMail = $obFeedback->sendMail(true);
 
             if (isset($_POST["email"]) && $result['presense']) {
-                $sendMail = $obFeedback->sendMail();
+                $obFeedbackClient = new \lib\Form\Feedback($mailData);
+                $sendMailClient = $obFeedbackClient->sendMail(false);
             }
 
             $result['success'] = true;
+
+            \lib\Logging\Log::makeLog($mailData, "feedback_success_result.txt");
         }
     }
-
-    // throw new Exception("test");
 } catch (Exception $e) {
     $result['error'][] = "Error " . $e->getCode() . ": " . $e->getMessage();
 }
+
+\lib\Logging\Log::makeLog($result, "feedback_all_result.txt");
 
 die(json_encode($result));

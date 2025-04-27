@@ -148,11 +148,11 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="form-phone" class="form-label">Телефон</label>
-                            <input type="text" name="phone" id="form-phone" class="form-control" placeholder="+7 (999) 999-99-99" required>
+                            <input type="tel" name="phone" id="form-phone" class="form-control" placeholder="+7 (999) 999-99-99" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="form-email" class="form-label">Почта</label>
-                            <input type="text" name="email" id="form-email" class="form-control" placeholder="name@example.com" required>
+                            <input type="email" name="email" id="form-email" class="form-control" placeholder="name@example.com" required>
                         </div>
                         <div class="form-group mb-3">
                             <label for="form-alcohol" class="form-label">Алкоголь</label>
@@ -164,7 +164,7 @@
                         <img data-src="<?= IMAGE_PATH . "loading.gif"; ?>" class="img-fluid lazy-image" alt="Загрузка...">
                     </div>
                 </div>
-                <div class="feedback-picture__container mt-4 mt-lg-0 col-12 col-lg-6">
+                <div class="feedback-picture__container mt-4 mt-lg-0 col-12 col-lg-6" data-aos="fade-up">
                     <img src="<?= IMAGE_PATH . "form-photo.webp"; ?>" class="img-fluid" alt="Анкета гостя">
                 </div>
             </div>

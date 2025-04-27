@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/vendor/autoload.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/local/php_interface/private/google.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/local/php_interface/private/mail.php";
 
 define("WEDDING_DAY", 23);
 define("IMAGE_PATH", "/local/template/images/");

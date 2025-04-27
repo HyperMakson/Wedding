@@ -6,5 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'lib\\Logging\\' => array($baseDir . '/local/php_interface/lib/Logging'),
     'lib\\Form\\' => array($baseDir . '/local/php_interface/lib/Form'),
+    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
 );

@@ -72,6 +72,9 @@
 </head>
 
 <body>
+    <div class="loader">
+        <img src="<?= IMAGE_PATH . "loading-heart.gif"; ?>" class="img-fluid" alt="Загрузка...">
+    </div>
     <header id="header">
         <div class="menu-container">
             <div class="menu-item" data-target-link="main-content">Галерея</div>

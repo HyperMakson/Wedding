@@ -9,14 +9,27 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
     public static $prefixLengthsPsr4 = array (
         'l' => 
         array (
+            'lib\\Logging\\' => 12,
             'lib\\Form\\' => 9,
+        ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'lib\\Logging\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/local/php_interface/lib/Logging',
+        ),
         'lib\\Form\\' => 
         array (
             0 => __DIR__ . '/../..' . '/local/php_interface/lib/Form',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
     );
 

@@ -671,8 +671,14 @@ canvas {
     appearance: none;
 }
 
+.feedback-container .feedback-picture__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .feedback-container .feedback-picture__container img {
-    height: 100%;
     object-fit: contain;
 }
 

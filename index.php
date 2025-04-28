@@ -138,8 +138,8 @@
                         <div class="form-group mb-3">
                             <label for="form-presense" class="form-label">Присутствие</label>
                             <select name="presense" id="form-presense" class="form-select custom-select" aria-label="Присутствие">
-                                <option value="true" selected>Смогу прийти</option>
-                                <option value="false">Не смогу &#128557;</option>
+                                <option value="true" selected>Смогу прийти ✅</option>
+                                <option value="false">Не смогу ❌</option>
                             </select>
                         </div>
                         <div class="form-group mb-3">
